@@ -28,9 +28,3 @@ Authenticated users can add comments to any post. Comments are displayed below t
 ### Post Comments
 Users can post comments on a particular post. Each comment includes the commenter's username and the comment content.
 
-## Installation
-
-1. Clone the repository:
-   ```sh
-   git clone https://github.com/rishabh766/XSpinOff.git
-   cd XSpinOff

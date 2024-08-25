@@ -4,10 +4,12 @@ import "../App.css"
 import * as Yup from "yup"
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
+import { useContext } from 'react';
+import {authContext} from "../helpers/authContext"
 
 function Login() {
   let navigate = useNavigate();
-  const [isAuthenticated, setisAuthenticated] = useState(0);
+  const {setauthState} = useContext(authContext)
     const initialValues = {
         username:"",
         password:"",
@@ -21,7 +23,8 @@ function Login() {
         .then((response) => {
           if(response.data.error) alert(response.data);
           else{
-            sessionStorage.setItem("accessToken", response.data);
+            localStorage.setItem("accessToken", response.data);
+            setauthState(true)
             navigate("/")
           }  
         })

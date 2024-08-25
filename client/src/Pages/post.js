@@ -28,14 +28,18 @@ function Post() {
         postId: id,
       }, {
         headers:{
-          accessToken: sessionStorage.getItem("accessToken"),
+          accessToken: localStorage.getItem("accessToken"),
         }
       }) // getting the access to the headers when the post request is made, the backend can be viewed in comments.js and the middleware used is authMiddleware.js
       .then((response) => {
         if(response.data.error) alert(response.data.error);
         else{
-          setComments([...Comments, response.data]); // Add the new comment to the list
-        setnewComment(""); // Clear the input field after adding the comment
+          const commentToAdd = {
+            commentBody: newComment,
+            username : response.data.username
+          }
+          setComments([...Comments, commentToAdd]); // Add the new comment to the list
+          setnewComment(""); // Clear the input field after adding the comment
         }
         // Optionally, you can refresh the comments list here
         
@@ -57,7 +61,7 @@ function Post() {
         </div>
       <div className='listOfComments'>
           {Comments.map((comment, key)=>{
-            return <div key={key} className='comment'>{comment.commentBody}</div>
+            return <div key={key} className='comment'>{comment.commentBody} <label>Username: {comment.username}</label></div>
           })}
       </div>
       </div>

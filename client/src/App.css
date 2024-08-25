@@ -16,7 +16,7 @@ body {
 .post {
   width: 90%;
   max-width: 400px;
-  height: auto;
+  height: 300px;
   border-radius: 10px;
   display: flex;
   flex-direction: column;

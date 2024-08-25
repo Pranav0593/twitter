@@ -4,9 +4,9 @@ module.exports = (sequelize, DataTypes)=>{
             type: DataTypes.STRING,
             allowNull:false
         },
-        postId:{
-            type: DataTypes.INTEGER,
-            allowNull:false
+        username:{
+            type:DataTypes.STRING,
+            allowNull:false,
         }
     });
 

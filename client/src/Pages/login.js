@@ -1,9 +1,13 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {Formik, Form, Field, ErrorMessage} from "formik";
 import "../App.css"
 import * as Yup from "yup"
 import axios from "axios";
+import { useNavigate } from 'react-router-dom';
+
 function Login() {
+  let navigate = useNavigate();
+  const [isAuthenticated, setisAuthenticated] = useState(0);
     const initialValues = {
         username:"",
         password:"",
@@ -15,30 +19,17 @@ function Login() {
     const handleSubmit = (data) => {
       axios.post("http://localhost:8000/auth/login", data)
         .then((response) => {
-          if (response.status === 200) {
-            console.log("Successful login");
-            window.location.href = "/"; // Redirect to a different page
-          }
+          if(response.data.error) alert(response.data);
+          else{
+            sessionStorage.setItem("accessToken", response.data);
+            navigate("/")
+          }  
         })
-        .catch((error) => {
-          if (error.response) {
-            if (error.response.status === 401) {
-              alert("Error Code 401: Wrong Login Credentials Please Try Again")
-              // Display an error message to the user
-            } else {
-              alert("An unexpected error occurred.");
-            }
-          } else if (error.request) {
-            alert("No response from the server.");
-          } else {
-            alert("Error", error.message);
-          }
-        });
     };
     
   return (
     <div className='createPostPage'>
-      <h1>Login</h1>
+      <div><h1>LOGIN</h1></div>
         <Formik
           initialValues={initialValues}
           validationSchema={validationSchema}
@@ -48,7 +39,7 @@ function Login() {
                   <ErrorMessage name="username" component="span"/>
                   <Field 
                   id="inputCreatePost" 
-                  name="username" 
+                  name="username"
                   placeholder="Enter the username"/>
             <label>Password: </label>
                   <ErrorMessage name="password" component="span"/>
@@ -57,7 +48,7 @@ function Login() {
                   name="password" 
                   placeholder="Enter the password"
                   />
-            <button type='submit'>Create User</button>
+            <button type='submit'>Login</button>
           </Form>
         </Formik>
     </div>

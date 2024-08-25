@@ -20,7 +20,7 @@ function Registration() {
     }
   return (
     <div className='createPostPage'>
-      <h1 color='white'>Register</h1>
+      <div><h1 color='white'>Register</h1></div>
         <Formik
           initialValues={initialValues}
           validationSchema={validationSchema}

@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const {Users} = require("../models");
 const bcrypt = require("bcrypt")
-
+const {sign} = require("jsonwebtoken");
 router.post("/", async (req, res)=>{
     const {username, password} = req.body; // destructuring the object to get the username and password individually
     bcrypt.hash(password, 10).then((hash)=>{
@@ -18,17 +18,16 @@ router.post("/login", async (req, res) => {
     // Checking the existence of the username
     const user = await Users.findOne({ where: { username: username } });
     if (!user) {
-        res.sendStatus(401); // 402 for "Payment Required" isn't a typical code for this scenario; consider using 401 (Unauthorized) instead.
-        return;
+        res.json({error:"Wrong credentials"});
+        return 
     } 
     bcrypt.compare(password, user.password).then((match) => {
-        if (match) {
-            res.sendStatus(200); // Success
-        } else {
-            res.sendStatus(401); // Unauthorized
+        if(!match){
+            res.json({error:"Wrong credentials"})
+            return
         }
-    }).catch(err => {
-        res.status(500).send("Internal Server Error");
-    });
+        const accessToken = sign({username:user.username, id:user.id}, "SECRET");
+        res.json(accessToken)
+    })
 });
 module.exports = router;

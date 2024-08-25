@@ -5,6 +5,7 @@ import Create from "./Pages/createpost"
 import Post from "./Pages/post"
 import Registration from './Pages/registration';
 import Login from './Pages/login';
+
 function App() {
   return(
     <div className='App'>

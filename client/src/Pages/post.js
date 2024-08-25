@@ -26,11 +26,19 @@ function Post() {
       .post("http://localhost:8000/comments", {
         commentBody: newComment,
         postId: id,
-      })
+      }, {
+        headers:{
+          accessToken: sessionStorage.getItem("accessToken"),
+        }
+      }) // getting the access to the headers when the post request is made, the backend can be viewed in comments.js and the middleware used is authMiddleware.js
       .then((response) => {
-        // Optionally, you can refresh the comments list here
-        setComments([...Comments, response.data]); // Add the new comment to the list
+        if(response.data.error) alert(response.data.error);
+        else{
+          setComments([...Comments, response.data]); // Add the new comment to the list
         setnewComment(""); // Clear the input field after adding the comment
+        }
+        // Optionally, you can refresh the comments list here
+        
       });
   };
   return (

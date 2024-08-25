@@ -1,3 +1,10 @@
+/* Base Styles */
+body {
+  margin: 0;
+  padding: 0;
+  background-color: black;
+}
+
 .App {
   width: 100vw;
   height: auto;
@@ -6,15 +13,10 @@
   flex-direction: column;
 }
 
-body {
-  margin: 0;
-  padding: 0;
-  background-color: black;
-}
-
 .post {
-  width: 400px;
-  height: 300px;
+  width: 90%;
+  max-width: 400px;
+  height: auto;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
@@ -29,6 +31,7 @@ body {
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   cursor: pointer;
 }
+
 .post .title {
   flex: 20%;
   border-bottom: 1px solid lightgray;
@@ -64,7 +67,6 @@ body {
 }
 
 /* CREATE POST PAGE CSS */
-
 .createPostPage {
   font-family: Arial, Helvetica, sans-serif;
   width: 100vw;
@@ -72,12 +74,15 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 }
+
 .formContainer {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 500px;
+  width: 90%;
+  max-width: 500px;
   height: auto;
   padding: 20px;
   border: 5px solid dodgerblue;
@@ -114,7 +119,6 @@ span {
 }
 
 /* NAVBAR */
-
 .navbar {
   width: 100%;
   height: 70px;
@@ -130,6 +134,7 @@ span {
   color: white;
 }
 
+/* INDIVIDUAL POST */
 /* INDIVIDUAL POST */
 .postPage {
   display: flex;
@@ -188,18 +193,20 @@ button {
 }
 
 .listOfComments .comment {
-  width: 70%;
+  width: 90%;
+  max-width: 70%;
   height: auto;
   padding: 30px;
   border: 1px solid lightgray;
   border-radius: 5px;
   margin-top: 20px;
-  color:white;
+  color: white;
 }
 
 #individual {
   height: 500px;
-  width: 600px;
+  width: 90%;
+  max-width: 600px;
 }
 
 #individual .title,
@@ -210,6 +217,78 @@ button {
 #individual .body {
   font-size: 25px;
 }
-h1{
-  color:white;
+
+h1 {
+  color: white;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .postPage {
+    flex-direction: column;
+  }
+
+  .leftSide,
+  .rightSide {
+    flex: 100%;
+    height: auto;
+  }
+
+  .addCommentContainer input,
+  .addCommentContainer button {
+    width: 90%;
+  }
+
+  .listOfComments .comment {
+    width: 95%;
+  }
+
+  #individual {
+    width: 95%;
+  }
+}
+
+@media (max-width: 480px) {
+  .addCommentContainer input,
+  .addCommentContainer button {
+    width: 100%;
+  }
+
+  .listOfComments .comment {
+    width: 100%;
+  }
+
+  #individual .title,
+  #individual .footer {
+    font-size: 24px;
+  }
+
+  #individual .body {
+    font-size: 20px;
+  }
+}
+
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .post {
+    width: 95%;
+  }
+
+  .formContainer {
+    width: 95%;
+  }
+
+  .addCommentContainer input,
+  .addCommentContainer button {
+    width: 90%;
+  }
+
+  .listOfComments .comment {
+    width: 95%;
+  }
+
+  #individual {
+    width: 95%;
+  }
 }

@@ -23,8 +23,12 @@ function Login() {
         .then((response) => {
           if(response.data.error) alert(response.data);
           else{
-            localStorage.setItem("accessToken", response.data);
-            setauthState(true)
+            localStorage.setItem("accessToken", response.data.token);
+            setauthState({
+              username: response.data.username,
+              id: response.data.id,
+              status:true
+            })
             navigate("/")
           }  
         })

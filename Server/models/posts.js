@@ -21,6 +21,13 @@ module.exports = (sequelize, DataTypes)=>{
         }) // basically tells that each post has many comments
         // This also creates a foreign key which in this case is the post id
     }
+    Posts.associate = (models)=>{
+        Posts.hasMany(models.Likes,{
+            onDelete:"cascade",
+        }) // basically tells that each post has many comments
+        // This also creates a foreign key which in this case is the post id
+    }
+    
     return Posts; // returning the table object
 
 };

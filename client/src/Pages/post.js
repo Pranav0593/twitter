@@ -1,12 +1,14 @@
-import React, {useEffect, useState} from 'react'
+import React, {useContext, useEffect, useState} from 'react'
 import {useParams} from "react-router-dom"
 import axios from "axios"
 import "../App.css"
+import { authContext } from '../helpers/authContext'
 function Post() {
     let {id} = useParams();
     const [postObject, setpostObject] = useState({});
     const [Comments, setComments] = useState([]);
     const [newComment, setnewComment] = useState(""); // creating a state so that the value that we input in the comments input can be used later
+    const {authState} = useContext(authContext)
     useEffect(() => {
         axios.get(`http://localhost:8000/posts/byid/${id}`).then((response)=>{
             setpostObject(response.data)
@@ -45,6 +47,7 @@ function Post() {
         
       });
   };
+  
   return (
     <div className="postPage">
       <div className="leftSide">
@@ -61,7 +64,9 @@ function Post() {
         </div>
       <div className='listOfComments'>
           {Comments.map((comment, key)=>{
-            return <div key={key} className='comment'>{comment.commentBody} <label>Username: {comment.username}</label></div>
+            return <div key={key} className='comment'>{comment.commentBody}
+            <label>Username: {comment.username}</label> 
+            </div>
           })}
       </div>
       </div>

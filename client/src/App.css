@@ -14,7 +14,6 @@ body {
 }
 
 .post {
-  width: 90%;
   max-width: 400px;
   height: 300px;
   border-radius: 10px;
@@ -65,6 +64,13 @@ body {
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
 }
+@media only screen and (max-width: 600px) {
+  .post{
+    max-width: 350px;
+    margin: auto;
+    margin-top: 5%;
+  }
+}
 
 /* CREATE POST PAGE CSS */
 .createPostPage {
@@ -81,7 +87,6 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 90%;
   max-width: 500px;
   height: auto;
   padding: 20px;
@@ -118,6 +123,7 @@ span {
   color: red;
 }
 
+
 /* NAVBAR */
 .navbar {
   width: 100%;
@@ -125,7 +131,16 @@ span {
   background-color: blueviolet;
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  box-sizing: border-box;
   font-family: Arial, Helvetica, sans-serif;
+  font-weight: 900;
+}
+
+.navbar label {
+  color: white;
+  margin-left: 2%;
 }
 
 .navbar a {
@@ -134,6 +149,62 @@ span {
   color: white;
 }
 
+.navbar a:hover{
+  font-size: large;
+  text-decoration:underline;
+}
+
+.navbar button {
+  width: 150px;
+  height: 40px;
+  background-color: rgb(190, 0, 0);
+  color: white;
+  margin-left: 2%;
+  border: none;
+  border-radius: 5px;
+}
+
+.navbar button:hover {
+  border: 5px solid rgb(137, 137, 255);
+  cursor: pointer;
+}
+#profileLink{
+  font-size: x-large;
+  font-weight: 300;
+}
+@media only screen and (max-width: 600px) {
+  .navbar{
+    font-size:large;
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+  }
+  .navbar a{
+    margin: auto;
+    margin-top: 3%;
+    /* border-bottom: 2px solid white; */
+    width: 100%;
+    text-align:center;
+    height: 30px;
+  }
+  .navbar a:hover{
+    color:rgb(226, 174, 105);
+    font-size: x-large;
+  }
+  #profilename{
+    margin-top: 5cqi;
+    background-color: rgb(0, 104, 164);
+    font-size: large;
+    text-align: center;
+    
+  }
+  #logout{
+    margin-top: 5%;
+    background-color: rgb(185, 0, 62);
+    font-size: large;
+    margin-bottom: 3%;
+  }
+}
 /* INDIVIDUAL POST */
 /* INDIVIDUAL POST */
 .postPage {
@@ -220,6 +291,11 @@ button {
 
 h1 {
   color: white;
+}
+#deleteButton{
+  width: 50px;
+  margin-left: 50%;
+  height: 30px;
 }
 
 /* Media Queries */

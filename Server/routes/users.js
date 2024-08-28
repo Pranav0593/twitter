@@ -3,6 +3,7 @@ const router = express.Router();
 const {Users} = require("../models");
 const bcrypt = require("bcrypt")
 const {sign} = require("jsonwebtoken");
+const {validateToken} = require("../middlewares/authMiddleware")
 router.post("/", async (req, res)=>{
     const {username, password} = req.body; // destructuring the object to get the username and password individually
     bcrypt.hash(password, 10).then((hash)=>{
@@ -27,7 +28,10 @@ router.post("/login", async (req, res) => {
             return
         }
         const accessToken = sign({username:user.username, id:user.id}, "SECRET");
-        res.json(accessToken)
+        res.json({token:accessToken, username:user.username, id:user.id});
     })
 });
+router.get("/auth", validateToken, (req,res)=>{
+    res.json(req.user);
+})
 module.exports = router;
